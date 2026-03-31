@@ -93,7 +93,7 @@
         50% { transform: scale(1.2); opacity: 0.7; }
       }
     </style>
-</head>
+<link rel="icon" href="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaklPoqV-bP4gqIkloZAarhiBv0ThXvAqtC-ikzUDSc02ysHvb3FctyTFQx1t1u6g-3KwPot7HBivGQXqm0L8OJkSIf4CSmA97T7J3gCRZbzRnnp243YJZgl9qZpsDT5NDMLZhEkljhKheZBQvRuAdHTsgj-m-gmDJeGGwxr2mfQm5c3aOqzfQhO2TLhsc_lCub9HzqZthO_AZycwdq3sjqLbjpfJFjeCt06W1fzlUOacvtOC3z0gEuyeQbxD1R2Kax_a2hEttMc" type="image/png"></head>
 <body class="bg-surface selection:bg-primary-fixed selection:text-primary">
 <!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 bg-white/60 dark:bg-slate-950/60 backdrop-blur-md shadow-[0px_20px_40px_rgba(75,0,130,0.06)]">
@@ -127,12 +127,12 @@
                         Wawasan pelacakan mata bertenaga AI untuk analisis kelelahan &amp; fokus. Ungkap pola tersembunyi dari performa kognitif Anda.
                     </p>
 <div class="flex flex-wrap gap-4">
-<button class="luminous-gradient text-on-primary px-8 py-4 rounded-xl font-manrope font-bold text-lg shadow-xl shadow-primary/10 hover:scale-[1.02] transition-transform">
+<a href="{{ route('pricing') }}" class="luminous-gradient text-on-primary px-8 py-4 rounded-xl font-manrope font-bold text-lg shadow-xl shadow-primary/10 hover:scale-[1.02] transition-transform text-center">
                             Mulai Analisis
-                        </button>
-<button class="bg-surface-container-highest text-on-surface px-8 py-4 rounded-xl font-manrope font-bold text-lg hover:bg-surface-container-high transition-colors">
+                        </a>
+<a href="{{ route('dashboard') }}" class="bg-surface-container-highest text-on-surface px-8 py-4 rounded-xl font-manrope font-bold text-lg hover:bg-surface-container-high transition-colors text-center">
                             Coba Demo
-                        </button>
+                        </a>
 </div>
 </div>
 <!-- Animated Heatmap/Eye Visual - Enhanced for Prominence -->
@@ -371,3 +371,4 @@
 </div>
 </footer>
 </body></html>
+

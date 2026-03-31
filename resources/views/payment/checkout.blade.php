@@ -74,7 +74,7 @@
             margin: 0 16px;
         }
     </style>
-</head>
+<link rel="icon" href="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaklPoqV-bP4gqIkloZAarhiBv0ThXvAqtC-ikzUDSc02ysHvb3FctyTFQx1t1u6g-3KwPot7HBivGQXqm0L8OJkSIf4CSmA97T7J3gCRZbzRnnp243YJZgl9qZpsDT5NDMLZhEkljhKheZBQvRuAdHTsgj-m-gmDJeGGwxr2mfQm5c3aOqzfQhO2TLhsc_lCub9HzqZthO_AZycwdq3sjqLbjpfJFjeCt06W1fzlUOacvtOC3z0gEuyeQbxD1R2Kax_a2hEttMc" type="image/png"></head>
 <body class="bg-mesh font-body text-on-surface min-h-screen flex flex-col items-center justify-center p-4 py-12 relative overflow-x-hidden">
 <!-- Background decorative elements -->
 <div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-primary-fixed/40 blur-[100px] pointer-events-none"></div>
@@ -213,3 +213,4 @@
         });
     </script>
 </body></html>
+

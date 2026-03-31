@@ -56,7 +56,7 @@
         }
         .data-gradient { background: linear-gradient(135deg, #2e0052 0%, #4b0082 100%); }
     </style>
-</head>
+<link rel="icon" href="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaklPoqV-bP4gqIkloZAarhiBv0ThXvAqtC-ikzUDSc02ysHvb3FctyTFQx1t1u6g-3KwPot7HBivGQXqm0L8OJkSIf4CSmA97T7J3gCRZbzRnnp243YJZgl9qZpsDT5NDMLZhEkljhKheZBQvRuAdHTsgj-m-gmDJeGGwxr2mfQm5c3aOqzfQhO2TLhsc_lCub9HzqZthO_AZycwdq3sjqLbjpfJFjeCt06W1fzlUOacvtOC3z0gEuyeQbxD1R2Kax_a2hEttMc" type="image/png"></head>
 <body class="bg-mesh font-body text-on-surface h-screen flex overflow-hidden">
 <!-- Sidebar Navigation (Simplified for context) -->
 <aside class="w-16 lg:w-64 h-full bg-surface-container-lowest border-r border-outline-variant/20 flex flex-col py-6 z-20 transition-all">
@@ -226,3 +226,4 @@
 </div>
 </main>
 </body></html>
+

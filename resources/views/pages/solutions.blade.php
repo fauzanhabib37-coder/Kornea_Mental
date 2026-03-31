@@ -51,7 +51,7 @@
             backdrop-filter: blur(20px);
         }
     </style>
-</head>
+<link rel="icon" href="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaklPoqV-bP4gqIkloZAarhiBv0ThXvAqtC-ikzUDSc02ysHvb3FctyTFQx1t1u6g-3KwPot7HBivGQXqm0L8OJkSIf4CSmA97T7J3gCRZbzRnnp243YJZgl9qZpsDT5NDMLZhEkljhKheZBQvRuAdHTsgj-m-gmDJeGGwxr2mfQm5c3aOqzfQhO2TLhsc_lCub9HzqZthO_AZycwdq3sjqLbjpfJFjeCt06W1fzlUOacvtOC3z0gEuyeQbxD1R2Kax_a2hEttMc" type="image/png"></head>
 <body class="bg-surface font-body text-on-surface">
 <!-- Navigasi Atas -->
 <nav class="fixed top-0 w-full z-50 bg-white/60 backdrop-blur-md shadow-[0px_20px_40px_rgba(75,0,130,0.06)] h-20 flex justify-center items-center">
@@ -307,3 +307,4 @@ Kornea Mental</div>
 </div>
 </footer>
 </body></html>
+

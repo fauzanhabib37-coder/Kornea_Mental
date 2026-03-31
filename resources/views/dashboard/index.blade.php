@@ -61,7 +61,7 @@
             opacity: 0.6;
         }
     </style>
-</head>
+<link rel="icon" href="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaklPoqV-bP4gqIkloZAarhiBv0ThXvAqtC-ikzUDSc02ysHvb3FctyTFQx1t1u6g-3KwPot7HBivGQXqm0L8OJkSIf4CSmA97T7J3gCRZbzRnnp243YJZgl9qZpsDT5NDMLZhEkljhKheZBQvRuAdHTsgj-m-gmDJeGGwxr2mfQm5c3aOqzfQhO2TLhsc_lCub9HzqZthO_AZycwdq3sjqLbjpfJFjeCt06W1fzlUOacvtOC3z0gEuyeQbxD1R2Kax_a2hEttMc" type="image/png"></head>
 <body class="bg-mesh font-body text-on-surface h-screen flex overflow-hidden">
 <!-- Sidebar Navigation -->
 <aside class="w-20 lg:w-64 h-full bg-surface-container-lowest border-r border-outline-variant/20 flex flex-col items-center lg:items-stretch py-6 transition-all duration-300 z-20 shadow-sm relative">
@@ -160,22 +160,25 @@
 <button class="text-xs bg-surface-container text-primary font-bold px-3 py-1 rounded-full hover:bg-surface-container-high transition-colors">Perluas Layar</button>
 </div>
 </div>
-<!-- Abstract representation of the eye-tracking video feed -->
-<div class="flex-1 bg-gradient-to-br from-surface-container-high to-surface-container-lowest rounded-xl border border-outline-variant/20 relative overflow-hidden flex items-center justify-center">
-<img alt="Area mata manusia monochromatik" class="absolute w-[120%] h-[120%] object-cover opacity-30 grayscale blur-[2px] pointer-events-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPbwlsFi4yUxNl4HDGEDqQcLx7HNCvPCh5CpSb3gyvny_XwytquzzeNyoPt4uUtwe4sWz1Y0IDiRjksUjFAIDGUSlsWLkvnz8fsb8PDLexUQvTik8LofkosmvCV0NLVpvJ6T137bqAyRlgqCltE9L2y2-ZjJmCrUvTIp6gNNZrpymLcwYtfzpLtuGYw68yb0B45gVMe480RsgKY9zImcVkW2xLrwH2agfbO6bs-DWXi7TqnyyVNeXKcqK4FdvjY-KGdS8nsJ8E_-0"/>
-<!-- AI Tracking Overlays -->
-<div class="absolute w-32 h-32 border-2 border-primary/40 rounded-full flex justify-center items-center">
+<!-- Live Camera Feed -->
+<div class="flex-1 bg-black rounded-xl border border-outline-variant/20 relative overflow-hidden flex items-center justify-center group">
+<!-- The actual video element -->
+<video id="webcam-feed" class="absolute w-full h-full object-cover opacity-80" autoplay playsinline muted></video>
+
+<!-- AI Tracking Overlays (Aesthetic) -->
+<div class="absolute w-32 h-32 border-2 border-primary/40 rounded-full flex justify-center items-center pointer-events-none">
 <div class="w-16 h-16 border border-secondary/60 rounded-full flex justify-center items-center">
 <div class="w-2 h-2 bg-error rounded-full animate-pulse shadow-[0_0_10px_rgba(186,26,26,0.8)]"></div>
 </div>
 </div>
+
 <!-- Tracking Grid Overlay -->
-<div class="absolute inset-0 bg-[linear-gradient(rgba(123,65,179,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(123,65,179,0.05)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
-<!-- Moving Heatmap dot -->
-<div class="absolute w-16 h-16 bg-surface-tint rounded-full heatmap-overlay blur-xl top-1/3 left-1/2 animate-[pulse_3s_ease-in-out_infinite_alternate]"></div>
+<div class="absolute inset-0 bg-[linear-gradient(rgba(123,65,179,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(123,65,179,0.2)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+
 <!-- Reticle -->
-<div class="absolute top-1/2 left-[48%] -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-[0.5px] border-primary/20 rounded-full border-dashed hidden md:block"></div>
-<div class="absolute bottom-4 right-4 bg-black/60 text-white text-[10px] font-mono px-2 py-1 rounded">X: 842 Y: 391 | 120Hz</div>
+<div class="absolute top-1/2 left-[48%] -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-[1px] border-primary/50 rounded-full border-dashed hidden md:block pointer-events-none"></div>
+
+<div id="cam-status" class="absolute bottom-4 right-4 bg-black/60 text-white text-[10px] font-mono px-2 py-1 rounded z-50">Menunggu Izin Kamera...</div>
 </div>
 </div>
 <!-- Vital Metrics & Controls Sidebar -->
@@ -318,4 +321,42 @@
 </div>
 </div>
 </main>
+<!-- WebGazer & Camera Access Scripts -->
+<script src="https://webgazer.cs.brown.edu/webgazer.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const videoElement = document.getElementById('webcam-feed');
+        const statusElement = document.getElementById('cam-status');
+
+        try {
+            // Request raw camera access for our custom UI container
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            videoElement.srcObject = stream;
+            statusElement.innerText = "Koneksi Kamera Aktif";
+            
+            // Initialize WebGazer Engine
+            // Note: This requires the user to click and look at points on the screen to calibrate
+            webgazer.setGazeListener(function(data, elapsedTime) {
+                if (data == null) return;
+                
+                // Track gaze coordinates
+                let x = Math.round(data.x);
+                let y = Math.round(data.y);
+                statusElement.innerText = `X: ${x} Y: ${y} | AI Tracking Active`;
+                statusElement.className = "absolute bottom-4 right-4 bg-green-600/80 text-white text-[10px] font-mono px-2 py-1 rounded z-50";
+            }).begin();
+            
+            // Configure WebGazer UI: Hide default video but keep tracking dot
+            setTimeout(() => {
+                webgazer.showVideoPreview(false).showPredictionPoints(true);
+            }, 1000);
+
+        } catch (err) {
+            console.error("Akses kamera ditolak atau tidak ditemukan perangkat:", err);
+            statusElement.innerText = "Akses Kamera Ditolak / Error";
+            statusElement.className = "absolute bottom-4 right-4 bg-error/90 text-white text-[10px] font-mono px-2 py-1 rounded z-50";
+        }
+    });
+</script>
 </body></html>
+

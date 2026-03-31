@@ -54,7 +54,7 @@
                 radial-gradient(at 0% 100%, rgba(186, 126, 244, 0.1) 0px, transparent 50%);
         }
     </style>
-</head>
+<link rel="icon" href="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaklPoqV-bP4gqIkloZAarhiBv0ThXvAqtC-ikzUDSc02ysHvb3FctyTFQx1t1u6g-3KwPot7HBivGQXqm0L8OJkSIf4CSmA97T7J3gCRZbzRnnp243YJZgl9qZpsDT5NDMLZhEkljhKheZBQvRuAdHTsgj-m-gmDJeGGwxr2mfQm5c3aOqzfQhO2TLhsc_lCub9HzqZthO_AZycwdq3sjqLbjpfJFjeCt06W1fzlUOacvtOC3z0gEuyeQbxD1R2Kax_a2hEttMc" type="image/png"></head>
 <body class="bg-mesh font-body text-on-surface min-h-screen flex flex-col items-center justify-center p-6">
 <!-- Top Branding Anchor -->
 <div class="fixed top-12 flex flex-col items-center gap-2">
@@ -147,3 +147,4 @@
 <div class="fixed top-1/4 -right-24 w-96 h-96 bg-primary-fixed-dim/20 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
 <div class="fixed -bottom-24 -left-24 w-96 h-96 bg-secondary-fixed-dim/20 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
 </body></html>
+

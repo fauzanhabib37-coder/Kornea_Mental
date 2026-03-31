@@ -41,7 +41,7 @@
         ::-webkit-scrollbar-thumb { background: rgba(206, 195, 211, 0.4); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(123, 65, 179, 0.4); }
     </style>
-</head>
+<link rel="icon" href="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaklPoqV-bP4gqIkloZAarhiBv0ThXvAqtC-ikzUDSc02ysHvb3FctyTFQx1t1u6g-3KwPot7HBivGQXqm0L8OJkSIf4CSmA97T7J3gCRZbzRnnp243YJZgl9qZpsDT5NDMLZhEkljhKheZBQvRuAdHTsgj-m-gmDJeGGwxr2mfQm5c3aOqzfQhO2TLhsc_lCub9HzqZthO_AZycwdq3sjqLbjpfJFjeCt06W1fzlUOacvtOC3z0gEuyeQbxD1R2Kax_a2hEttMc" type="image/png"></head>
 <body class="bg-surface font-body text-on-surface h-screen flex flex-col md:flex-row overflow-hidden">
 <!-- Sidebar Layout (Reused structure) -->
 <aside class="w-20 md:w-64 h-full bg-surface-container-lowest border-r border-outline-variant/20 flex flex-col py-6 z-20 transition-all flex-shrink-0">
@@ -218,3 +218,4 @@
 </div>
 </main>
 </body></html>
+
