@@ -84,13 +84,17 @@
 <div class="flex-grow border-t border-outline-variant/30"></div>
 </div>
 <!-- Form -->
-<form class="flex flex-col gap-5" action="{{ route('dashboard') }}" method="GET">
+<form class="flex flex-col gap-5" action="{{ url('/masuk') }}" method="POST">
+    @csrf
 <div class="flex flex-col gap-2">
 <label class="font-label text-xs font-bold text-primary/70 uppercase tracking-widest px-1" for="email">Email Profesional</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-lg">mail</span>
-<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-high/50 border-none rounded-lg focus:ring-2 focus:ring-primary-container/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/60 text-sm" id="email" placeholder="praktisi@korneamental.ai" type="email" required/>
+<input name="email" class="w-full pl-12 pr-4 py-3.5 bg-surface-container-high/50 {{ $errors->has('email') ? 'ring-2 ring-error bg-error-container/20' : 'border-none hover:bg-surface-container-low focus:ring-2 focus:ring-primary-container/20 focus:bg-surface-container-lowest' }} rounded-lg transition-all placeholder:text-outline/60 text-sm" id="email" placeholder="praktisi@korneamental.ai" type="email" value="{{ old('email') }}" required/>
 </div>
+@error('email')
+    <div class="text-error text-[10px] uppercase font-bold px-1">{{ $message }}</div>
+@enderror
 </div>
 <div class="flex flex-col gap-2">
 <div class="flex justify-between items-center px-1">
@@ -99,7 +103,7 @@
 </div>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-lg">lock</span>
-<input class="w-full pl-12 pr-4 py-3.5 bg-surface-container-high/50 border-none rounded-lg focus:ring-2 focus:ring-primary-container/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/60 text-sm" id="password" placeholder="••••••••" type="password" required/>
+<input name="password" class="w-full pl-12 pr-4 py-3.5 bg-surface-container-high/50 border-none rounded-lg focus:ring-2 focus:ring-primary-container/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/60 text-sm" id="password" placeholder="••••••••" type="password" required/>
 </div>
 </div>
 <button class="w-full py-4 mt-2 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold rounded-lg shadow-lg shadow-primary/10 hover:shadow-primary/20 hover:scale-[1.01] active:scale-[0.99] transition-all duration-300" type="submit">

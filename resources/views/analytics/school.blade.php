@@ -88,10 +88,14 @@
 <div class="mt-auto px-4 pb-4 hidden lg:block border-t border-outline-variant/20 pt-4">
 <div class="flex items-center gap-3">
 <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs">BP</div>
-<div>
-<p class="text-xs font-bold text-on-surface">Bp. Prasetyo</p>
-<p class="text-[10px] text-on-surface-variant">Wali Kelas 11-IPA 1</p>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-bold text-on-surface truncate">Bp. Prasetyo</p>
+<p class="text-[10px] text-on-surface-variant truncate">Wali Kelas 11-IPA 1</p>
 </div>
+<form method="POST" action="{{ route('logout') }}" class="ml-auto flex items-center">
+    @csrf
+    <button type="submit" class="material-symbols-outlined text-outline hover:text-error text-sm cursor-pointer flex" title="Keluar">logout</button>
+</form>
 </div>
 </div>
 </aside>
@@ -155,30 +159,31 @@
 </div>
 <!-- List Content -->
 <div class="divide-y divide-outline-variant/10">
-<!-- Critical Student -->
-<div class="p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-error/5 student-row transition-all relative">
+@foreach($students as $student)
+<div class="p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 {{ $student->has_alert ? 'bg-error/5 student-row' : 'student-row bg-white' }} transition-all relative">
+@if($student->has_alert)
 <div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+@endif
 <div class="flex items-center gap-4 w-full md:w-1/3">
 <div class="relative">
-<div class="w-10 h-10 rounded-full bg-slate-200 border-2 border-error overflow-hidden">
-<!-- Avatar placeholder -->
-<img alt="Siswa 1" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRNaTre9Gwt3nLiu2cSiGiZAQ1LovMT3fkKxqQSf2lVhIplGHH1xGU_QBgyhBMeF7HCmwuWE1a1G4dEHaKnQac9TT-vpjhkbUSTG63MpAuB8w0LvfOvbPbt3An3CW9dFSqbHNxRON4KWo91vgNfrFDdC7YWEGufdxXqMBKYKi84GWAtdkajvcL3JXyNnyBoBaHPDs7NHXkHV-FFGUQOmjf6_VLXriy94Wij2y13_94tS7cO11PJznfSSTyWBPXpxvqZh3lTJ0KALk"/>
+<div class="w-10 h-10 rounded-full bg-slate-200 border-2 {{ $student->has_alert ? 'border-error' : 'border-slate-300' }} overflow-hidden flex items-center justify-center font-bold text-primary text-xs">
+    {{ $student->initials }}
 </div>
-<span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-error rounded-full border-2 border-white"></span>
+<span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 {{ $student->has_alert ? 'bg-error' : 'bg-green-500' }} rounded-full border-2 border-white"></span>
 </div>
 <div>
-<h5 class="font-bold text-sm text-on-surface leading-none mb-1">Rizky Amanda Putra</h5>
-<p class="text-[10px] text-outline font-mono">NIS: 19024</p>
+<h5 class="font-bold text-sm text-on-surface leading-none mb-1">{{ $student->name }}</h5>
+<p class="text-[10px] text-outline font-mono">{{ $student->nis }}</p>
 </div>
 </div>
 <!-- Progress Bars -->
 <div class="w-full md:w-1/3 space-y-3">
 <div>
 <div class="flex justify-between text-[10px] mb-1 font-bold">
-<span class="text-on-surface-variant">Skor Perhatian</span><span class="text-error">32%</span>
+<span class="text-on-surface-variant">Skor Perhatian</span><span class="{{ $student->has_alert ? 'text-error' : 'text-green-600' }}">{{ $student->focus_score }}%</span>
 </div>
 <div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
-<div class="w-[32%] h-full bg-error rounded-full"></div>
+<div class="h-full rounded-full {{ $student->has_alert ? 'bg-error' : 'bg-green-500' }}" style="width: {{ $student->focus_score }}%"></div>
 </div>
 </div>
 </div>
@@ -186,92 +191,21 @@
 <div class="w-full md:w-1/4 flex justify-between px-4">
 <div class="text-center">
 <p class="text-[10px] text-outline font-bold uppercase tracking-wider mb-0.5">Kedipan</p>
-<p class="text-xs font-bold text-error">28/mnt</p>
+<p class="text-xs font-bold {{ $student->has_alert ? 'text-error' : 'text-on-surface' }}">{{ $student->blink_rate }}</p>
 </div>
 <div class="text-center">
 <p class="text-[10px] text-outline font-bold uppercase tracking-wider mb-0.5">Saccade</p>
-<p class="text-xs font-bold text-error">Lambat</p>
+<p class="text-xs font-bold {{ $student->has_alert ? 'text-error' : 'text-on-surface' }}">{{ $student->saccade_status }}</p>
 </div>
 </div>
 <!-- Action -->
 <div class="w-full md:w-auto flex justify-end">
-<button class="bg-white border border-outline-variant/30 text-xs font-bold text-primary px-3 py-1.5 rounded-md shadow-sm hover:shadow text-center w-full md:w-auto">Peringatkan (Private)</button>
+<button class="{{ $student->status_color }} border border-outline-variant/30 text-xs font-bold px-3 py-1.5 rounded-md shadow-sm w-full md:w-auto">
+    {{ $student->status_label }}
+</button>
 </div>
 </div>
-<!-- Normal Student 1 -->
-<div class="p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 student-row transition-all bg-white relative">
-<div class="flex items-center gap-4 w-full md:w-1/3">
-<div class="relative">
-<div class="w-10 h-10 rounded-full bg-surface-container-high border-2 border-green-400 overflow-hidden flex items-center justify-center font-bold text-primary text-xs">SA</div>
-<span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white"></span>
-</div>
-<div>
-<h5 class="font-bold text-sm text-on-surface leading-none mb-1">Siti Aminah</h5>
-<p class="text-[10px] text-outline font-mono">NIS: 19045</p>
-</div>
-</div>
-<div class="w-full md:w-1/3 space-y-3">
-<div>
-<div class="flex justify-between text-[10px] mb-1 font-bold">
-<span class="text-on-surface-variant">Skor Perhatian</span><span class="text-green-600">89%</span>
-</div>
-<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
-<div class="w-[89%] h-full bg-green-500 rounded-full"></div>
-</div>
-</div>
-</div>
-<div class="w-full md:w-1/4 flex justify-between px-4">
-<div class="text-center">
-<p class="text-[10px] text-outline font-bold uppercase tracking-wider mb-0.5">Kedipan</p>
-<p class="text-xs font-bold text-on-surface">14/mnt</p>
-</div>
-<div class="text-center">
-<p class="text-[10px] text-outline font-bold uppercase tracking-wider mb-0.5">Saccade</p>
-<p class="text-xs font-bold text-on-surface">Normal</p>
-</div>
-</div>
-<div class="w-full md:w-auto flex justify-end">
-<button class="bg-surface-container text-xs font-semibold text-outline px-3 py-1.5 rounded-md hover:bg-surface-container-high w-full md:w-auto cursor-not-allowed">Optimal</button>
-</div>
-</div>
-<!-- Normal Student 2 -->
-<div class="p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 student-row transition-all bg-white relative">
-<div class="flex items-center gap-4 w-full md:w-1/3">
-<div class="relative">
-<div class="w-10 h-10 rounded-full bg-surface-container-high border-2 border-yellow-400 overflow-hidden">
-<img alt="Siswa 2" class="w-full h-full object-cover grayscale opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrivYIT55A-C9_8Myiwde6r97ZOVm6l3ZozHNMQysS2KrX4TPX-KbiwNh1bziOFyey3A-uq5ebGrz5iGva9wIst-jmZFhf0hs-j5ayGNDYXsQdeZQ_EoTxO5dPveF9FUevACNO4EPhNavbaKpeU_GIjc95aGwFDFRTtervjuSdQER1A3GLK7Sy8sirETWacecJDcwRDDGECDYTSEnUI9i2HPNACAqks1E-NWP_3CTUHwZ4yHPcV5HexkEeJYeT2fWNr3VhusZJJr0"/>
-</div>
-<span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-yellow-400 rounded-full border-2 border-white"></span>
-</div>
-<div>
-<h5 class="font-bold text-sm text-on-surface leading-none mb-1">Bima Santoso</h5>
-<p class="text-[10px] text-outline font-mono">NIS: 19012</p>
-</div>
-</div>
-<div class="w-full md:w-1/3 space-y-3">
-<div>
-<div class="flex justify-between text-[10px] mb-1 font-bold">
-<span class="text-on-surface-variant">Skor Perhatian</span><span class="text-yellow-600">65%</span>
-</div>
-<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
-<div class="w-[65%] h-full bg-yellow-400 rounded-full"></div>
-</div>
-</div>
-</div>
-<div class="w-full md:w-1/4 flex justify-between px-4">
-<div class="text-center">
-<p class="text-[10px] text-outline font-bold uppercase tracking-wider mb-0.5">Kedipan</p>
-<p class="text-xs font-bold text-yellow-600">22/mnt</p>
-</div>
-<div class="text-center">
-<p class="text-[10px] text-outline font-bold uppercase tracking-wider mb-0.5">Saccade</p>
-<p class="text-xs font-bold text-on-surface">Cepat</p>
-</div>
-</div>
-<div class="w-full md:w-auto flex justify-end">
-<button class="bg-white border border-outline-variant/30 text-xs font-bold text-primary px-3 py-1.5 rounded-md shadow-sm hover:shadow w-full md:w-auto">Lihat Detail</button>
-</div>
-</div>
+@endforeach
 </div>
 <!-- Pagination mock -->
 <div class="p-4 bg-surface-container-low/30 border-t border-outline-variant/10 flex justify-between items-center text-xs font-medium text-outline">

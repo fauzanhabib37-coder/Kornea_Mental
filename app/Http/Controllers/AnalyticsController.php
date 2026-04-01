@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
+use App\Models\Faculty;
 
 class AnalyticsController extends Controller
 {
@@ -13,11 +15,13 @@ class AnalyticsController extends Controller
 
     public function school()
     {
-        return view('analytics.school');
+        $students = Student::all();
+        return view('analytics.school', compact('students'));
     }
 
     public function university()
     {
-        return view('analytics.university');
+        $faculties = Faculty::all();
+        return view('analytics.university', compact('faculties'));
     }
 }

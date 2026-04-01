@@ -99,6 +99,20 @@
 <span class="hidden md:inline text-sm">Repositori Data Mentah</span>
 </a>
 </nav>
+<!-- User profile snippet -->
+<div class="mt-auto px-4 pb-4 hidden md:block border-t border-outline-variant/20 pt-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs">A</div>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-bold text-on-surface truncate">Admin Univ</p>
+<p class="text-[10px] text-on-surface-variant truncate">Rektorat</p>
+</div>
+<form method="POST" action="{{ route('logout') }}" class="ml-auto flex items-center">
+    @csrf
+    <button type="submit" class="material-symbols-outlined text-outline hover:text-error text-sm cursor-pointer flex" title="Keluar">logout</button>
+</form>
+</div>
+</div>
 </aside>
 <!-- Main Content -->
 <main class="flex-1 h-full flex flex-col overflow-hidden">
@@ -255,69 +269,37 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-outline-variant/10 font-body">
+@foreach($faculties as $faculty)
 <tr class="hover:bg-surface-container-low/30 transition-colors">
 <td class="px-6 py-4">
 <div class="flex items-center gap-3">
 <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-[16px]">science</span>
+<span class="material-symbols-outlined text-[16px]">{{ $faculty->requires_attention ? 'science' : 'account_balance' }}</span>
 </div>
-<span class="font-bold text-primary">Kedokteran &amp; Ilmu Kesehatan</span>
+<span class="font-bold text-primary">{{ $faculty->name }}</span>
 </div>
 </td>
-<td class="px-6 py-4 font-medium">1,205</td>
+<td class="px-6 py-4 font-medium">{{ number_format($faculty->student_count) }}</td>
 <td class="px-6 py-4">
 <div class="flex items-center gap-2">
-<span class="font-bold">85%</span>
-<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden"><div class="w-[85%] h-full bg-green-500"></div></div>
+<span class="font-bold">{{ $faculty->avg_focus }}%</span>
+<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full {{ $faculty->avg_focus >= 80 ? 'bg-green-500' : ($faculty->avg_focus >= 70 ? 'bg-primary-container' : 'bg-surface-tint') }}" style="width: {{ $faculty->avg_focus }}%"></div>
+</div>
 </div>
 </td>
-<td class="px-6 py-4 font-bold text-error">Tinggi (7.2/10)</td>
+<td class="px-6 py-4 font-bold {{ $faculty->fatigue_index > 60 ? 'text-error' : ($faculty->fatigue_index > 40 ? 'text-yellow-600' : 'text-green-600') }}">
+    {{ $faculty->fatigue_index > 60 ? 'Tinggi' : ($faculty->fatigue_index > 40 ? 'Sedang' : 'Rendah') }} ({{ number_format($faculty->fatigue_index / 10, 1) }}/10)
+</td>
 <td class="px-6 py-4 text-right">
+@if($faculty->requires_attention)
 <span class="inline-flex items-center px-2 py-1 rounded bg-error-container/30 text-error text-[10px] font-bold uppercase border border-error/20">Perlu Intervensi</span>
+@else
+<span class="inline-flex items-center px-2 py-1 rounded {{ $faculty->avg_focus > 80 ? 'bg-green-50 text-green-700 border-green-200' : 'bg-surface-container-high text-on-surface-variant border-outline-variant/30' }} text-[10px] font-bold uppercase border">{{ $faculty->status }}</span>
+@endif
 </td>
 </tr>
-<tr class="hover:bg-surface-container-low/30 transition-colors">
-<td class="px-6 py-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-[16px]">code</span>
-</div>
-<span class="font-bold text-primary">Sistem Informasi &amp; Teknik</span>
-</div>
-</td>
-<td class="px-6 py-4 font-medium">850</td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-2">
-<span class="font-bold">78%</span>
-<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden"><div class="w-[78%] h-full bg-primary-container"></div></div>
-</div>
-</td>
-<td class="px-6 py-4 font-bold text-yellow-600">Sedang (4.5/10)</td>
-<td class="px-6 py-4 text-right">
-<span class="inline-flex items-center px-2 py-1 rounded bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase border border-outline-variant/30">Stabil</span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low/30 transition-colors">
-<td class="px-6 py-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-[16px]">account_balance</span>
-</div>
-<span class="font-bold text-primary">Ekonomi &amp; Bisnis</span>
-</div>
-</td>
-<td class="px-6 py-4 font-medium">1,102</td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-2">
-<span class="font-bold">92%</span>
-<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden"><div class="w-[92%] h-full bg-green-500"></div></div>
-</div>
-</td>
-<td class="px-6 py-4 font-bold text-green-600">Rendah (2.1/10)</td>
-<td class="px-6 py-4 text-right">
-<span class="inline-flex items-center px-2 py-1 rounded bg-green-50 text-green-700 text-[10px] font-bold uppercase border border-green-200">Sangat Baik</span>
-</td>
-</tr>
+@endforeach
 </tbody>
 </table>
 </div>

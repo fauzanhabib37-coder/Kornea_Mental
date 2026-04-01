@@ -114,7 +114,10 @@
 <p class="text-xs font-bold text-on-surface truncate">Praktisi Medis</p>
 <p class="text-[10px] text-on-surface-variant truncate">praktisi@korneamental.ai</p>
 </div>
-<a href="{{ route('home') }}" class="material-symbols-outlined text-outline hover:text-error text-sm cursor-pointer ml-auto" title="Keluar">logout</a>
+<form method="POST" action="{{ route('logout') }}" class="ml-auto flex items-center">
+    @csrf
+    <button type="submit" class="material-symbols-outlined text-outline hover:text-error text-sm cursor-pointer flex" title="Keluar">logout</button>
+</form>
 </div>
 </div>
 </aside>
@@ -244,75 +247,38 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-outline-variant/10 font-body">
-<!-- Row 1 -->
+@foreach ($sessions as $session)
 <tr class="hover:bg-surface-container-low/30 transition-colors group cursor-pointer">
-<td class="px-6 py-4 font-mono text-xs text-primary font-medium">#KM-4921</td>
+<td class="px-6 py-4 font-mono text-xs text-primary font-medium">{{ $session->session_code }}</td>
 <td class="px-6 py-4">
 <div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-full bg-secondary-fixed/50 flex flex-col items-center justify-center text-secondary font-bold text-xs uppercase">AB</div>
-<span class="font-semibold text-on-surface group-hover:text-primary transition-colors">Ahmad B.</span>
+<div class="w-8 h-8 rounded-full bg-secondary-fixed/50 flex flex-col items-center justify-center text-secondary font-bold text-xs uppercase">{{ $session->client_initials }}</div>
+<span class="font-semibold text-on-surface group-hover:text-primary transition-colors">{{ $session->client_name }}</span>
 </div>
 </td>
-<td class="px-6 py-4 text-on-surface-variant">45m 12s</td>
+<td class="px-6 py-4 text-on-surface-variant">{{ $session->duration }}</td>
 <td class="px-6 py-4">
 <div class="flex items-center gap-2">
-<div class="w-16 bg-surface-container h-1.5 rounded-full overflow-hidden"><div class="bg-primary w-[82%] h-full rounded-full"></div></div>
-<span class="text-xs font-bold">82%</span>
+<div class="w-16 bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="{{ $session->avg_focus_score < 60 ? 'bg-error' : 'bg-primary' }} object-cover h-full rounded-full" style="width: {{ $session->avg_focus_score }}%"></div>
+</div>
+<span class="text-xs font-bold">{{ $session->avg_focus_score }}%</span>
 </div>
 </td>
 <td class="px-6 py-4">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase bg-surface-container-highest text-on-surface-variant">
-                    Selesai
-                </span>
-</td>
-</tr>
-<!-- Row 2 -->
-<tr class="hover:bg-surface-container-low/30 transition-colors group cursor-pointer">
-<td class="px-6 py-4 font-mono text-xs text-primary font-medium">#KM-4920</td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-full bg-primary-fixed/50 flex flex-col items-center justify-center text-primary font-bold text-xs uppercase">CN</div>
-<span class="font-semibold text-on-surface group-hover:text-primary transition-colors">Citra N.</span>
-</div>
-</td>
-<td class="px-6 py-4 text-on-surface-variant">1h 20m</td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-2">
-<div class="w-16 bg-surface-container h-1.5 rounded-full overflow-hidden"><div class="bg-error w-[45%] h-full rounded-full"></div></div>
-<span class="text-xs font-bold">45%</span>
-</div>
-</td>
-<td class="px-6 py-4">
+@if($session->is_alert)
 <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase bg-error-container/50 text-error">
 <span class="material-symbols-outlined text-[12px] opacity-70">flag</span>
-                    Diulas
-                </span>
-</td>
-</tr>
-<!-- Row 3 -->
-<tr class="hover:bg-surface-container-low/30 transition-colors group cursor-pointer">
-<td class="px-6 py-4 font-mono text-xs text-primary font-medium">#KM-4919</td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
-<span class="material-symbols-outlined text-[16px] text-on-surface-variant">person</span>
-</div>
-<span class="font-semibold text-on-surface group-hover:text-primary transition-colors text-on-surface-variant italic">Anonim 04</span>
-</div>
-</td>
-<td class="px-6 py-4 text-on-surface-variant">12m 05s</td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-2">
-<div class="w-16 bg-surface-container h-1.5 rounded-full overflow-hidden"><div class="bg-surface-tint w-[68%] h-full rounded-full"></div></div>
-<span class="text-xs font-bold">68%</span>
-</div>
-</td>
-<td class="px-6 py-4">
+    {{ $session->status }}
+</span>
+@else
 <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase bg-surface-container-highest text-on-surface-variant">
-                    Selesai
-                </span>
+    {{ $session->status }}
+</span>
+@endif
 </td>
 </tr>
+@endforeach
 </tbody>
 </table>
 </div>
