@@ -1,72 +1,112 @@
-# Kornea Mental — Web Application
+<div align="center">
 
-Platform web untuk **Analisis Visual & Kognitif Terpadu** berbasis *eye-tracking*. Kornea Mental menyediakan dua portal terpisah yang disesuaikan berdasarkan peran pengguna: **Portal Individu** untuk pengguna perorangan, dan **Portal Institusi** untuk sekolah maupun universitas.
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaklPoqV-bP4gqIkloZAarhiBv0ThXvAqtC-ikzUDSc02ysHvb3FctyTFQx1t1u6g-3KwPot7HBivGQXqm0L8OJkSIf4CSmA97T7J3gCRZbzRnnp243YJZgl9qZpsDT5NDMLZhEkljhKheZBQvRuAdHTsgj-m-gmDJeGGwxr2mfQm5c3aOqzfQhO2TLhsc_lCub9HzqZthO_AZycwdq3sjqLbjpfJFjeCt06W1fzlUOacvtOC3z0gEuyeQbxD1R2Kax_a2hEttMc" alt="Kornea Mental Logo" width="80" />
 
-> 🏆 Proyek P2MW — Mahasiswa Universitas
+# 🧠 Kornea Mental
+
+### Platform Analisis Visual & Kognitif Berbasis Eye-Tracking
+
+[![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-CDN-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![WebGazer](https://img.shields.io/badge/WebGazer.js-Eye_Tracking-8B5CF6?style=for-the-badge)](https://webgazer.cs.brown.edu)
+[![License](https://img.shields.io/badge/Status-P2MW_2024-gold?style=for-the-badge)](https://github.com)
+
+<p>
+  <strong>Kornea Mental</strong> adalah aplikasi web inovatif yang memanfaatkan teknologi <em>eye-tracking</em> berbasis kamera untuk menganalisis kondisi visual dan kognitif pengguna secara real-time — tanpa perangkat keras tambahan.
+</p>
+
+[🚀 Demo Live](#-akun-demo) · [📖 Dokumentasi](#%EF%B8%8F-cara-menjalankan) · [🐛 Laporkan Bug](https://github.com/fauzanhabib37-coder/Kornea_Mental/issues)
+
+</div>
+
+---
+
+## 📸 Tampilan Aplikasi
+
+<div align="center">
+
+| Portal Individu — Dasbor | Portal Institusi — Monitoring |
+|---|---|
+| Kalibrasi + Live Eye-Tracking | Manajemen & monitoring siswa |
+
+| Checkout 3-Langkah | Halaman Hasil Analitik |
+|---|---|
+| Bayar → API Key → Daftar Akun | Heatmap, Saccade Path, AOI |
+
+</div>
 
 ---
 
 ## ✨ Fitur Utama
 
-### 🏠 Halaman Publik (Landing Pages)
-- **Beranda** — Informasi produk, fitur unggulan, dan CTA
-- **Harga** — Paket langganan Individu & Institusi
-- **Solusi** — Penjelasan solusi khusus institusi pendidikan
+### 🌐 Landing Pages Publik
+- **Beranda** — Hero section, fitur unggulan, statistik, testimonial
+- **Halaman Harga** — Perbandingan paket Individu & Institusi
+- **Halaman Solusi** — Penjelasan implementasi untuk lembaga pendidikan
 
-### 🔐 Autentikasi & Peran (Role-Based)
-- Halaman login dengan desain *glassmorphism* modern
-- **Tombol Demo** tersedia langsung di halaman login
-- Setelah login, sistem **otomatis mendeteksi peran** (`individu` / `institusi`) dan mengarahkan ke portal yang sesuai
-- Session management dengan Laravel Auth
+### 🔐 Alur Registrasi & Pembayaran
+```
+Pilih Paket  ──►  Bayar & Dapatkan API Key  ──►  Verifikasi Key  ──►  Buat Akun  ──►  Dasbor
+   /harga          /pembayaran                    /aktivasi           /daftar
+```
+- Pemilihan paket **Individu** atau **Institusi** dengan ringkasan harga
+- Generasi **API Key unik** per transaksi (format: `KM-INST-XXXXXXXXXXXXXXXX`)
+- Verifikasi API Key sebagai gate sebelum pembuatan akun
+- Auto-login & redirect ke portal yang sesuai setelah registrasi
 
 ### 👤 Portal Individu (`/individu/...`)
-- **Dasbor Personal** — Live eye-tracking feed, metrik kognitif real-time (Cognitive Load, Fatigue Index, Blink Rate)
-- **Peta Panas (Heatmap)** — Visualisasi distribusi perhatian pada antarmuka target
-- **Jalur Tatapan (Saccade Path)** — Peta animasi gerakan bola mata antar elemen layar
-- **Area of Interest (AOI)** — Distribusi waktu tatapan berdasarkan zona yang didefinisikan
-- **Sub-fitur Analitik:**
-  - 🛡️ **Analisis Stres — Blink Rate**: Timeline kedipan per 10 menit, indikator tekanan kognitif
-  - 🎯 **Analisis Fokus — Fixation**: Skor fokus, distribusi durasi fiksasi, rata-rata waktu tatapan
-  - ⚠️ **Analisis Burnout — Saccade**: Indeks burnout, deteksi regresi, gauge kelelahan visual
-- **Profil & Pengaturan** — Konfigurasi preferensi dan kalibrasi default
+
+| Halaman | Fitur |
+|---|---|
+| **Dasbor Personal** | Live eye-tracking via webcam, kalibrasi 9-titik, deteksi arah gerak mata, beban kognitif & kelelahan real-time |
+| **Hasil Analitik** | Heatmap distribusi perhatian, jalur tatapan (saccade path), area of interest, analisis blink rate, fixation & burnout |
+| **Profil & Pengaturan** | Manajemen akun, preferensi kalibrasi |
 
 ### 🏫 Portal Institusi (`/institusi/...`)
-- **Dasbor Institusi** — Ringkasan kolektif: Total siswa dipantau, Jumlah kelas, Siswa berisiko tinggi
-- **Tabel Siswa Real-time** — Daftar siswa dengan status fokus, blink rate, saccade, dan alert
-- **Analitik Sekolah** — Monitoring fokus kelas, alert kelelahan kolektif, peringkat siswa
-- **Analitik Universitas** — Tren beban kognitif per fakultas (Chart.js), radar pola visual, tabel kinerja
-- **Pengaturan Institusi** — Manajemen profil dan preferensi admin
+
+| Halaman | Fitur |
+|---|---|
+| **Dasbor Keseluruhan** | KPI kelas (total siswa, rata-rata fokus, butuh perhatian, sesi selesai), grafik distribusi skor, donut chart status |
+| **Monitoring Siswa** | Tabel lengkap dengan skor fokus, blink rate, saccade, status alert; log aktivitas sesi terfilter |
+| **Deteksi Siswa** | Pilih siswa → kalibrasi → rekam sesi eye-tracking, hasil otomatis masuk monitoring |
+| **Pengaturan** | Profil institusi, ambang batas risiko, notifikasi alert |
+
+### 📥 Manajemen Siswa
+- **Tambah manual** — Input nama & NIS via modal
+- **Impor CSV** — Upload file `Nama,NIS` dengan drag-and-drop, deteksi duplikat otomatis
+- **Hapus siswa** — Dengan konfirmasi per baris
 
 ---
 
 ## 🛠️ Teknologi
 
-| Komponen | Teknologi |
+| Layer | Teknologi |
 |---|---|
-| Backend Framework | Laravel 12 |
-| Bahasa Pemrograman | PHP 8.2+ |
-| Database | SQLite (development) |
-| CSS Framework | Tailwind CSS (CDN) |
-| Visualisasi Grafik | Chart.js |
-| Eye-Tracking | WebGazer.js |
-| Ikon | Material Symbols (Google) |
-| Font | Manrope + Inter (Google Fonts) |
+| 🔧 **Backend** | Laravel 12.x — PHP 8.2+ |
+| 🗄️ **Database** | SQLite (dev) / MySQL (prod) — Eloquent ORM |
+| 🎨 **Frontend** | Tailwind CSS (CDN), Vanilla JS |
+| 📊 **Visualisasi** | Chart.js (bar, doughnut, line) |
+| 👁️ **Eye Tracking** | WebGazer.js (webcam-based, no hardware) |
+| 🔤 **Tipografi** | Manrope + Inter (Google Fonts) |
+| 🎯 **Ikon** | Material Symbols Outlined (Google) |
+| ⚡ **Asset Build** | Vite |
 
 ---
 
-## ⚙️ Cara Menjalankan (Local Development)
+## ⚙️ Cara Menjalankan
 
-### Persyaratan
-- PHP >= 8.2
-- Composer
-- Node.js & npm
+### Persyaratan Sistem
+- PHP >= 8.2 + Composer
+- Node.js >= 18 + npm
+- (Opsional) MySQL untuk production
 
-### Langkah Instalasi
+### Instalasi
 
 ```bash
 # 1. Clone repositori
-git clone <repo-url>
-cd kornea-mental-web
+git clone https://github.com/fauzanhabib37-coder/Kornea_Mental.git
+cd Kornea_Mental
 
 # 2. Install dependensi PHP
 composer install
@@ -74,85 +114,165 @@ composer install
 # 3. Install dependensi Node
 npm install
 
-# 4. Buat file environment
+# 4. Setup environment
 cp .env.example .env
 php artisan key:generate
 
-# 5. Jalankan migrasi + seeder (membuat akun demo)
+# 5. Migrasi database + seed data demo
 php artisan migrate:fresh --seed
 
-# 6. Jalankan server (dua terminal berbeda)
-php artisan serve       # Terminal 1 → Laravel server
-npm run dev             # Terminal 2 → Vite asset bundler
+# 6. Jalankan server (dua terminal)
+php artisan serve     # → http://localhost:8000
+npm run dev           # → Vite HMR
 ```
 
-Buka browser di: **http://localhost:8000**
+> 💡 **WebGazer.js** memerlukan izin kamera dari browser. Pastikan akses HTTPS atau `localhost`.
 
 ---
 
 ## 🔑 Akun Demo
 
-Tersedia tombol **Demo Login** langsung di halaman `/masuk` untuk kemudahan demonstrasi:
+Tersedia **tombol demo** langsung di halaman `/masuk` — klik sekali, langsung masuk:
 
-| Peran | Email | Password |
-|---|---|---|
-| **Individu** | `individu@korneamental.ai` | `password` |
-| **Institusi** | `admin@sekolaha.edu` | `password` |
+| Peran | Email | Password | Portal |
+|---|---|---|---|
+| 👤 **Individu** | `individu@korneamental.ai` | `password` | `/individu/dasbor` |
+| 🏫 **Institusi** | `admin@sekolaha.edu` | `password` | `/institusi/dasbor` |
 
 ---
 
-## 📂 Struktur Rute
+## 📂 Peta Rute
 
 ```
-/ (Beranda Publik)
-/harga
-/solusi
-/masuk                         ← Form Login
+# Public
+GET  /                        → Beranda
+GET  /harga                   → Halaman harga
+GET  /solusi                  → Halaman solusi
+GET  /masuk                   → Form login
+POST /masuk                   → Proses login
+
+# Alur Pembayaran (publik, no-auth)
+GET  /pembayaran              → Pilih paket & form bayar
+POST /pembayaran              → Proses bayar → generate API Key
+GET  /aktivasi                → Tampil API Key & form verifikasi
+POST /aktivasi                → Verifikasi API Key
+GET  /daftar                  → Form buat akun
+POST /daftar                  → Buat akun & auto-login
 
 # Portal Individu (auth required)
-/individu/dasbor               ← Dasbor personal + live tracking
-/individu/analisis?tab=heatmap ← Peta panas
-/individu/analisis?tab=saccade ← Jalur tatapan
-/individu/analisis?tab=aoi     ← Area of Interest
-/individu/profil               ← Profil & pengaturan
+GET  /individu/dasbor         → Dasbor + live eye-tracking
+GET  /individu/analisis       → Hasil analitik (heatmap, saccade, AOI)
+GET  /individu/profil         → Profil & pengaturan
+POST /individu/sesi-baru      → Mulai sesi baru
+POST /individu/sesi-selesai/{id} → Selesaikan & simpan sesi
 
 # Portal Institusi (auth required)
-/institusi/dasbor              ← Dasbor kolektif institusi
-/institusi/sekolah             ← Monitoring kelas
-/institusi/universitas         ← Statistik universitas
-/institusi/pengaturan          ← Pengaturan institusi
-
-/pembayaran                    ← Checkout & faktur
+GET  /institusi/dasbor        → Dasbor kolektif & grafik
+GET  /institusi/monitoring    → Monitoring & log aktivitas siswa
+GET  /institusi/deteksi       → Rekam sesi per-siswa
+GET  /institusi/pengaturan    → Pengaturan institusi
+POST /institusi/deteksi/mulai → Mulai sesi deteksi siswa
+POST /institusi/deteksi/selesai/{id} → Selesaikan sesi
+POST /institusi/siswa/tambah  → Tambah siswa manual
+POST /institusi/siswa/impor   → Impor siswa dari CSV
+DEL  /institusi/siswa/{id}    → Hapus siswa
 ```
 
 ---
 
-## 📁 Struktur Folder Penting
+## 📁 Struktur Folder
 
 ```
-app/Http/Controllers/
-├── AuthController.php        ← Login + role-based redirect
-├── IndividuController.php    ← Dashboard, profil, analitik individu
-├── InstitusiController.php   ← Dashboard, sekolah, universitas
-├── HomeController.php        ← Landing pages publik
-└── PaymentController.php     ← Halaman pembayaran
-
-resources/views/
-├── pages/                    ← Landing pages (home, pricing, solutions)
-├── auth/                     ← Login form
-├── dashboard/
-│   ├── individu.blade.php    ← Dasbor portal individu
-│   ├── institusi.blade.php   ← Dasbor portal institusi
-│   └── profile.blade.php     ← Profil (role-aware)
-└── analytics/
-    ├── results.blade.php     ← Analitik individu (3 tab + sub-fitur)
-    ├── school.blade.php      ← Analitik sekolah
-    └── university.blade.php  ← Analitik universitas
-
-database/seeders/
-└── DatabaseSeeder.php        ← Akun demo + data dummy (Student, Faculty)
+kornea-mental-web/
+├── app/Http/Controllers/
+│   ├── AuthController.php          ← Login, logout, register (+ API key gate)
+│   ├── PaymentController.php       ← Checkout, proses bayar, verifikasi API key
+│   ├── IndividuController.php      ← Dasbor, analitik, sesi individu
+│   ├── InstitusiController.php     ← Dasbor, monitoring, deteksi, manajemen siswa
+│   └── HomeController.php          ← Landing pages publik
+│
+├── resources/views/
+│   ├── pages/                      ← home.blade.php, pricing.blade.php, solutions.blade.php
+│   ├── auth/
+│   │   ├── login.blade.php         ← Form login + tombol demo
+│   │   └── register.blade.php      ← Form daftar akun (step 3 payment flow)
+│   ├── payment/
+│   │   ├── checkout.blade.php      ← Pilih paket & bayar (step 1)
+│   │   └── apikey.blade.php        ← Tampil & verifikasi API Key (step 2)
+│   ├── dashboard/
+│   │   ├── individu.blade.php      ← Dasbor personal + live tracking
+│   │   ├── institusi_settings.blade.php ← Pengaturan institusi
+│   │   └── profile.blade.php       ← Profil individu
+│   ├── institusi/
+│   │   ├── _sidebar.blade.php      ← Sidebar institusi (shared component)
+│   │   ├── dashboard.blade.php     ← Dasbor kolektif
+│   │   ├── monitoring.blade.php    ← Tabel siswa + log aktivitas
+│   │   └── deteksi.blade.php       ← 3-step deteksi per-siswa
+│   └── analytics/
+│       └── results.blade.php       ← Hasil analitik individu (heatmap, AOI, dll)
+│
+├── database/
+│   ├── migrations/                 ← Tabel: users, students, research_sessions
+│   └── seeders/DatabaseSeeder.php  ← Data demo: 2 user, 3 siswa, data sesi
+│
+└── routes/web.php                  ← Semua definisi rute
 ```
 
 ---
 
-*Prototipe antarmuka untuk program P2MW — Kornea Mental © 2024*
+## 🧩 Arsitektur Data
+
+```
+users
+ ├── id, name, email, password
+ └── role: 'individu' | 'institusi'
+
+students (milik institusi)
+ ├── id, name, nis, initials
+ ├── focus_score, blink_rate, saccade_status
+ ├── status_label, status_color
+ └── has_alert (bool)
+
+research_sessions
+ ├── id, session_code, client_name, client_initials
+ ├── duration, avg_focus_score
+ ├── status: 'Berlangsung' | 'Selesai'
+ └── is_alert (bool)
+```
+
+---
+
+## 🗺️ Roadmap
+
+- [x] Portal Individu dengan live eye-tracking (WebGazer.js)
+- [x] Portal Institusi terpadu (Dasbor + Monitoring + Deteksi)
+- [x] Manajemen siswa: tambah manual & impor CSV
+- [x] Alur pembayaran 3-langkah dengan verifikasi API Key
+- [ ] Ekspor laporan PDF per siswa
+- [ ] Notifikasi real-time saat siswa kelelahan tinggi
+- [ ] Multi-institusi (beberapa sekolah per admin)
+- [ ] Dashboard admin superuser
+
+---
+
+## 🤝 Kontribusi
+
+1. Fork repositori ini
+2. Buat branch fitur: `git checkout -b feat/nama-fitur`
+3. Commit perubahan: `git commit -m 'feat: deskripsi singkat'`
+4. Push ke branch: `git push origin feat/nama-fitur`
+5. Buat Pull Request
+
+---
+
+<div align="center">
+
+**Kornea Mental** — Prototipe Antarmuka untuk Program P2MW
+
+*Menghadirkan analisis kognitif berbasis eye-tracking yang aksesibel untuk semua.*
+
+[![GitHub](https://img.shields.io/badge/GitHub-fauzanhabib37--coder-181717?style=flat-square&logo=github)](https://github.com/fauzanhabib37-coder/Kornea_Mental)
+
+© 2024 Kornea Mental. Dikembangkan dengan ❤️ untuk pendidikan Indonesia.
+
+</div>
