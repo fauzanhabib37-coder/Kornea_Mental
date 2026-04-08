@@ -109,6 +109,16 @@
 <button class="w-full py-4 mt-2 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold rounded-lg shadow-lg shadow-primary/10 hover:shadow-primary/20 hover:scale-[1.01] active:scale-[0.99] transition-all duration-300" type="submit">
                     Masuk ke Konsol
                 </button>
+                
+                <!-- Demo Quick Login Buttons -->
+                <div class="flex gap-2 w-full mt-2">
+                    <button type="button" onclick="document.getElementById('email').value='individu@korneamental.ai'; document.getElementById('password').value='password';" class="flex-1 py-2 bg-surface-container-low text-primary text-xs font-bold rounded-lg border border-primary/20 hover:bg-primary/10 transition-colors">
+                        Demo Individu
+                    </button>
+                    <button type="button" onclick="document.getElementById('email').value='admin@sekolaha.edu'; document.getElementById('password').value='password';" class="flex-1 py-2 bg-surface-container-low text-secondary text-xs font-bold rounded-lg border border-secondary/20 hover:bg-secondary/10 transition-colors" style="color: #046c4e; border-color: #046c4e44;">
+                        Demo Institusi
+                    </button>
+                </div>
 </form>
 <!-- Footer Link -->
 <p class="text-center text-sm text-on-surface-variant">

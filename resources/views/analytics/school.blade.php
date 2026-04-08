@@ -67,21 +67,21 @@
 </a>
 </div>
 <nav class="flex-1 w-full px-2 space-y-1">
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="{{ route('dashboard') }}">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="{{ route('institusi.dashboard') }}">
 <span class="material-symbols-outlined text-[20px]">grid_view</span>
 <span class="hidden lg:inline text-sm font-medium">Dasbor Utama</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-tint/10 text-surface-tint border-l-4 border-surface-tint transition-colors" href="{{ route('analytics.school') }}">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-tint/10 text-surface-tint border-l-4 border-surface-tint transition-colors" href="{{ route('institusi.school') }}">
 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">groups</span>
 <span class="hidden lg:inline text-sm font-bold">Pantau Kelas</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="{{ route('analytics.university') }}">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="{{ route('institusi.university') }}">
 <span class="material-symbols-outlined text-[20px]">bar_chart</span>
 <span class="hidden lg:inline text-sm font-medium">Statistik Universitas</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="{{ route('analytics.results') }}">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="{{ route('institusi.settings') }}">
 <span class="material-symbols-outlined text-[20px]">assignment</span>
-<span class="hidden lg:inline text-sm font-medium">Laporan Siswa</span>
+<span class="hidden lg:inline text-sm font-medium">Pengaturan Institusi</span>
 </a>
 </nav>
 <!-- User profile snippet -->

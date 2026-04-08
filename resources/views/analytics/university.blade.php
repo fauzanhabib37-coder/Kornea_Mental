@@ -80,16 +80,16 @@
 </div>
 <nav class="flex-1 w-full px-3 space-y-2 overflow-y-auto">
 <div class="hidden md:block text-[10px] font-bold text-outline uppercase tracking-wider mb-2 px-2">Menu Utama</div>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container font-medium transition-colors" href="{{ route('dashboard') }}">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container font-medium transition-colors" href="{{ route('institusi.dashboard') }}">
 <span class="material-symbols-outlined text-[20px]">dashboard</span>
 <span class="hidden md:inline text-sm">Dasbor Sentral</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container font-medium transition-colors" href="{{ route('analytics.school') }}">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container font-medium transition-colors" href="{{ route('institusi.school') }}">
 <span class="material-symbols-outlined text-[20px]">school</span>
-<span class="hidden md:inline text-sm">Manajemen Fakultas</span>
+<span class="hidden md:inline text-sm">Manajemen Kelas</span>
 </a>
 <div class="hidden md:block text-[10px] font-bold text-outline uppercase tracking-wider mt-6 mb-2 px-2">Analitik Tingkat Lanjut</div>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white font-bold shadow-md shadow-primary/20 relative overflow-hidden group" href="{{ route('analytics.university') }}">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white font-bold shadow-md shadow-primary/20 relative overflow-hidden group" href="{{ route('institusi.university') }}">
 <div class="absolute inset-0 bg-white/10 group-hover:bg-transparent transition-colors"></div>
 <span class="material-symbols-outlined text-[20px] relative z-10" style="font-variation-settings: 'FILL' 1;">insights</span>
 <span class="hidden md:inline text-sm relative z-10">Statistik Institusi</span>

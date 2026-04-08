@@ -15,13 +15,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Generate Admin User
+        // Generate Individu User
         User::create([
-            'name' => 'Praktisi Medis',
-            'email' => 'praktisi@korneamental.ai',
+            'name' => 'Fauzan H. (Individu)',
+            'email' => 'individu@korneamental.ai',
             'password' => bcrypt('password'),
-            'role' => 'admin',
-            'institution_name' => 'Kornea Mental HQ'
+            'role' => 'individu',
+            'institution_name' => null
+        ]);
+
+        // Generate Institusi User
+        User::create([
+            'name' => 'Admin Sekolah A',
+            'email' => 'admin@sekolaha.edu',
+            'password' => bcrypt('password'),
+            'role' => 'institusi',
+            'institution_name' => 'Sekolah A'
         ]);
 
         // Generate Dashboard Sessions

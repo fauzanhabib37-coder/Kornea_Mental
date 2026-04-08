@@ -1,216 +1,237 @@
 <!DOCTYPE html>
-<html class="light" lang="id"><head>
+<html lang="id"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Pembayaran Berhasil | Kornea Mental</title>
+<title>Pilih Paket & Pembayaran | Kornea Mental</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#2e0052",
-                        "on-surface-variant": "#4c4451",
-                        "surface-container-high": "#e7e8ee",
-                        "primary-container": "#4b0082",
-                        "on-surface": "#191c20",
-                        "on-primary": "#ffffff",
-                        "primary-fixed": "#f0dbff",
-                        "surface-container-low": "#f2f3f9",
-                        "secondary-fixed-dim": "#d4bbff",
-                        "surface": "#f8f9ff",
-                        "outline-variant": "#cec3d3",
-                        "surface-tint": "#7b41b3",
-                        "error": "#ba1a1a",
-                        "secondary-fixed": "#ebdcff",
-                        "error-container": "#ffdad6",
-                        "background": "#f8f9ff",
-                        "surface-container-lowest": "#ffffff"
-                    },
-                    fontFamily: {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
-                    },
-                },
-            },
-        }
-    </script>
-<style>
-        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .bg-mesh {
-            background-color: #f8f9ff;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(123, 65, 179, 0.08) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(75, 0, 130, 0.05) 0px, transparent 50%);
-        }
-        .success-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 25px 50px -12px rgba(46, 0, 82, 0.1), 0 0px 15px rgba(123, 65, 179, 0.05);
-        }
-        .receipt-cutout {
-            position: relative;
-        }
-        .receipt-cutout::before, .receipt-cutout::after {
-            content: '';
-            position: absolute;
-            top: -12px;
-            width: 24px;
-            height: 24px;
-            background-color: #f8f9ff;
-            border-radius: 50%;
-            border-bottom: 1px solid rgba(206, 195, 211, 0.3);
-        }
-        .receipt-cutout::before { left: -12px; border-right: 1px solid rgba(206, 195, 211, 0.3); }
-        .receipt-cutout::after { right: -12px; border-left: 1px solid rgba(206, 195, 211, 0.3); }
-        .dashed-line {
-            border-top: 2px dashed rgba(206, 195, 211, 0.4);
-            margin: 0 16px;
-        }
-    </style>
-<link rel="icon" href="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaklPoqV-bP4gqIkloZAarhiBv0ThXvAqtC-ikzUDSc02ysHvb3FctyTFQx1t1u6g-3KwPot7HBivGQXqm0L8OJkSIf4CSmA97T7J3gCRZbzRnnp243YJZgl9qZpsDT5NDMLZhEkljhKheZBQvRuAdHTsgj-m-gmDJeGGwxr2mfQm5c3aOqzfQhO2TLhsc_lCub9HzqZthO_AZycwdq3sjqLbjpfJFjeCt06W1fzlUOacvtOC3z0gEuyeQbxD1R2Kax_a2hEttMc" type="image/png"></head>
-<body class="bg-mesh font-body text-on-surface min-h-screen flex flex-col items-center justify-center p-4 py-12 relative overflow-x-hidden">
-<!-- Background decorative elements -->
-<div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-primary-fixed/40 blur-[100px] pointer-events-none"></div>
-<div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-secondary-fixed/40 blur-[100px] pointer-events-none"></div>
-<!-- Top Logo Anchor -->
-<div class="absolute top-8 left-8 flex items-center gap-3">
-<a href="{{ route('home') }}" class="flex items-center gap-3 cursor-pointer">
-<img alt="Kornea Mental" class="h-8 w-8 rounded-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaklPoqV-bP4gqIkloZAarhiBv0ThXvAqtC-ikzUDSc02ysHvb3FctyTFQx1t1u6g-3KwPot7HBivGQXqm0L8OJkSIf4CSmA97T7J3gCRZbzRnnp243YJZgl9qZpsDT5NDMLZhEkljhKheZBQvRuAdHTsgj-m-gmDJeGGwxr2mfQm5c3aOqzfQhO2TLhsc_lCub9HzqZthO_AZycwdq3sjqLbjpfJFjeCt06W1fzlUOacvtOC3z0gEuyeQbxD1R2Kax_a2hEttMc"/>
-<span class="font-headline font-bold text-sm text-primary tracking-tight">Kornea Mental</span>
-</a>
-</div>
-<!-- Main Card -->
-<main class="w-full max-w-lg z-10 animate-[slideUp_0.6s_ease-out]">
-<style>
-            @keyframes slideUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-            @keyframes scaleIn { 0% { transform: scale(0); } 60% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        </style>
-<div class="success-card rounded-3xl overflow-hidden flex flex-col items-center relative">
-<!-- Top Section: Success Icon & Header -->
-<div class="bg-surface-container-lowest w-full pt-10 pb-8 px-8 flex flex-col items-center text-center">
-<div class="relative w-20 h-20 mb-6">
-<div class="absolute inset-0 bg-green-100 rounded-full animate-ping opacity-70" style="animation-duration: 3s;"></div>
-<div class="w-20 h-20 rounded-full bg-gradient-to-tr from-green-500 to-emerald-400 flex justify-center items-center shadow-lg shadow-green-500/20 relative z-10 animate-[scaleIn_0.5s_ease-out_0.2s_both]">
-<span class="material-symbols-outlined text-white text-[40px]">check_circle</span>
-</div>
-</div>
-<h1 class="font-headline font-extrabold text-3xl text-primary mb-2">Pembayaran Berhasil!</h1>
-<p class="text-sm text-on-surface-variant max-w-[280px]">
-                    Akses lisensi <strong>Institusi Premium</strong> Anda telah diaktifkan secara instan.
-                </p>
-</div>
-<!-- Paper Receipt Cutout Divider -->
-<div class="w-full bg-surface-container-low receipt-cutout relative">
-<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white border border-outline-variant/30 px-3 py-1 rounded-full text-[10px] font-bold text-primary tracking-widest uppercase shadow-sm z-20">Resi Elektronik</div>
-<div class="dashed-line relative top-[1px]"></div>
-</div>
-<!-- Middle Section: Receipt Details -->
-<div class="bg-surface-container-low w-full px-8 py-10 space-y-6 border-x border-outline-variant/30">
-<!-- Order Info -->
-<div class="flex justify-between items-end border-b border-outline-variant/20 pb-4">
-<div>
-<p class="text-[10px] font-bold text-outline tracking-wider uppercase mb-1">ID Transaksi</p>
-<p class="font-mono text-xs font-semibold text-primary">#KM-INV-889241</p>
-</div>
-<div class="text-right">
-<p class="text-[10px] font-bold text-outline tracking-wider uppercase mb-1">Tanggal</p>
-<p class="text-xs font-semibold text-on-surface-variant">24 Okt 2023, 14:30 WIB</p>
-</div>
-</div>
-<!-- Plan Details -->
-<div class="flex items-start gap-4">
-<div class="w-12 h-12 rounded-xl bg-primary-fixed/50 flex items-center justify-center flex-shrink-0 border border-primary-fixed">
-<span class="material-symbols-outlined text-primary text-[24px]">workspace_premium</span>
-</div>
-<div class="flex-1">
-<h3 class="font-bold text-sm text-primary leading-tight mb-1">Paket Institusi Terpadu</h3>
-<p class="text-xs text-on-surface-variant mb-2">Lisensi Tahunan (Max 500 Siswa/Subjek)</p>
-<div class="bg-surface-container/50 rounded-lg p-2.5 flex items-center gap-2">
-<span class="material-symbols-outlined text-[14px] text-surface-tint flex-shrink-0">check</span>
-<span class="text-[10px] font-medium text-on-surface-variant">Termasuk integrasi LMS &amp; API mentah.</span>
-</div>
-</div>
-</div>
-<!-- Price Breakdown -->
-<div class="space-y-3 pt-4">
-<div class="flex justify-between items-center text-sm">
-<span class="text-on-surface-variant font-medium">Subtotal</span>
-<span class="font-semibold text-primary">Rp 48.000.000</span>
-</div>
-<div class="flex justify-between items-center text-sm">
-<span class="text-on-surface-variant font-medium">Pajak (PPN 11%)</span>
-<span class="font-semibold text-primary">Rp 5.280.000</span>
-</div>
-<div class="flex justify-between items-center text-sm text-green-600">
-<span class="font-bold">Diskon Edukasi (-20%)</span>
-<span class="font-bold">- Rp 10.656.000</span>
-</div>
-</div>
-<!-- Total Box -->
-<div class="bg-white rounded-xl p-4 flex justify-between items-center border border-surface-container shadow-sm mt-4">
-<div>
-<p class="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-1">Total Dibayar</p>
-<p class="font-headline font-black text-2xl text-primary">Rp 42.624.000</p>
-</div>
-<div class="flex items-center gap-1.5 opacity-60 pointer-events-none grayscale">
-<div class="w-8 h-5 border border-slate-200 rounded shrink-0 flex items-center justify-center overflow-hidden"><img alt="Visa" class="w-full h-full object-contain" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png"/></div>
-<p class="font-mono text-[10px] font-bold text-slate-500">**** 4291</p>
-</div>
-</div>
-</div>
-<!-- Bottom Section: Actions -->
-<div class="bg-surface-container-lowest w-full px-8 py-8 border-t border-outline-variant/30 text-center flex flex-col gap-4 relative overflow-hidden">
-<a class="w-full py-4 bg-primary text-on-primary font-bold rounded-xl shadow-lg hover:shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2" href="{{ route('dashboard') }}">
-<span>Masuk ke Dasbor Institusi</span>
-<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</a>
-<button class="text-sm font-bold text-outline hover:text-primary transition-colors py-2 flex items-center justify-center gap-2 mx-auto" onclick="alert('Resi PDF sedang diunduh')">
-<span class="material-symbols-outlined text-[18px]">receipt_long</span> Unduh Faktur Pajak (PDF)
-            </button>
-</div>
-</div>
-<p class="text-center text-[10px] text-outline mt-8 font-medium">Salinan faktur dan instruksi setup telah dikirimkan ke <strong class="text-on-surface-variant">admin@universitas.ac.id</strong></p>
-</main>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script>
-        // Trigger confetti on load
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                var duration = 3 * 1000;
-                var animationEnd = Date.now() + duration;
-                var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+tailwind.config={
+    theme:{extend:{colors:{
+        "primary":"#2e0052","on-surface-variant":"#4c4451","primary-container":"#4b0082",
+        "on-surface":"#191c20","surface-container-low":"#f2f3f9","surface":"#f8f9ff",
+        "outline-variant":"#cec3d3","surface-tint":"#7b41b3","error":"#ba1a1a",
+        "surface-container-lowest":"#ffffff","primary-fixed":"#f0dbff",
+    },fontFamily:{"headline":["Manrope"],"body":["Inter"]}}}
+}
+</script>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.bg-mesh{background-color:#f8f9ff;background-image:radial-gradient(at 0% 0%,rgba(123,65,179,.1) 0px,transparent 60%),radial-gradient(at 100% 100%,rgba(75,0,130,.06) 0px,transparent 60%);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .5s ease-out both;}
+.plan-card{border:2px solid transparent;cursor:pointer;transition:all .2s;}
+.plan-card.selected{border-color:#2e0052;box-shadow:0 0 0 4px rgba(46,0,82,.08);}
+</style>
+</head>
+<body class="bg-mesh font-body text-on-surface min-h-screen">
 
-                function randomInRange(min, max) {
-                    return Math.random() * (max - min) + min;
-                }
+<!-- Nav -->
+<nav class="h-16 flex items-center px-8 border-b border-outline-variant/15 bg-surface-container-lowest/80 backdrop-blur-md">
+    <a href="{{ route('home') }}" class="flex items-center gap-2.5">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaklPoqV-bP4gqIkloZAarhiBv0ThXvAqtC-ikzUDSc02ysHvb3FctyTFQx1t1u6g-3KwPot7HBivGQXqm0L8OJkSIf4CSmA97T7J3gCRZbzRnnp243YJZgl9qZpsDT5NDMLZhEkljhKheZBQvRuAdHTsgj-m-gmDJeGGwxr2mfQm5c3aOqzfQhO2TLhsc_lCub9HzqZthO_AZycwdq3sjqLbjpfJFjeCt06W1fzlUOacvtOC3z0gEuyeQbxD1R2Kax_a2hEttMc" class="h-8 w-8 rounded-md" alt="Logo"/>
+        <span class="font-headline font-bold text-sm text-primary">Kornea Mental</span>
+    </a>
+    <!-- Step indicator -->
+    <div class="flex items-center gap-0 mx-auto text-xs font-bold">
+        <div class="flex items-center gap-2 text-primary">
+            <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-[11px]">1</span>
+            Pilih Paket & Bayar
+        </div>
+        <div class="w-8 h-px bg-outline-variant/40 mx-3"></div>
+        <div class="flex items-center gap-2 text-on-surface-variant">
+            <span class="w-6 h-6 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant flex items-center justify-center text-[11px]">2</span>
+            Verifikasi API Key
+        </div>
+        <div class="w-8 h-px bg-outline-variant/40 mx-3"></div>
+        <div class="flex items-center gap-2 text-on-surface-variant">
+            <span class="w-6 h-6 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant flex items-center justify-center text-[11px]">3</span>
+            Buat Akun
+        </div>
+    </div>
+</nav>
 
-                var interval = setInterval(function() {
-                    var timeLeft = animationEnd - Date.now();
+<div class="max-w-5xl mx-auto px-4 py-12">
 
-                    if (timeLeft <= 0) {
-                        return clearInterval(interval);
-                    }
+    <!-- Heading -->
+    <div class="text-center mb-10 fade-up">
+        <h1 class="font-headline font-black text-3xl md:text-4xl text-primary mb-2">Pilih Paket Anda</h1>
+        <p class="text-on-surface-variant text-sm">Mulai dengan paket yang sesuai kebutuhan. Setelah pembayaran, Anda akan mendapat API Key untuk mengaktifkan akun.</p>
+    </div>
 
-                    var particleCount = 50 * (timeLeft / duration);
-                    confetti({
-                        ...defaults, particleCount,
-                        origin: { x: randomInRange(0.1, 0.3), y: randomInRange(0.2, 0.4) },
-                        colors: ['#2e0052', '#7b41b3', '#f0dbff']
-                    });
-                    confetti({
-                        ...defaults, particleCount,
-                        origin: { x: randomInRange(0.7, 0.9), y: randomInRange(0.2, 0.4) },
-                        colors: ['#2e0052', '#7b41b3', '#4b0082']
-                    });
-                }, 250);
-            }, 600); // slight delay after card animates in
-        });
-    </script>
+    <form action="{{ route('payment.process') }}" method="POST" id="payment-form">
+        @csrf
+
+        <!-- Plan Selection -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+            <!-- Individu -->
+            <label class="plan-card rounded-2xl p-6 bg-surface-container-lowest border border-outline-variant/20 shadow-sm fade-up {{ ($plan ?? 'individu') === 'individu' ? 'selected' : '' }}" style="animation-delay:.1s">
+                <input type="radio" name="plan" value="individu" class="hidden" {{ ($plan ?? 'individu') === 'individu' ? 'checked' : '' }} onchange="selectPlan('individu')"/>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">person</span>
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-primary/60 bg-primary/8 px-2.5 py-0.5 rounded-full border border-primary/20">Explorer</span>
+                    </div>
+                    <div id="check-individu" class="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center {{ ($plan ?? 'individu') === 'individu' ? 'bg-primary' : '' }}">
+                        @if(($plan ?? 'individu') === 'individu')
+                        <span class="material-symbols-outlined text-white text-[12px]">check</span>
+                        @endif
+                    </div>
+                </div>
+                <h2 class="font-headline font-bold text-xl text-on-surface mb-0.5">Individu</h2>
+                <p class="font-headline font-black text-3xl text-primary mb-1">Rp25rb <span class="text-base font-medium text-on-surface-variant">/bulan</span></p>
+                <p class="text-xs text-on-surface-variant mb-4">Ideal untuk peneliti, psikolog, dan praktisi individu</p>
+                <ul class="space-y-2 text-xs text-on-surface-variant">
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[16px]" style="font-variation-settings:'FILL' 1;">check_circle</span> Durasi Sesi Tanpa Batas</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[16px]" style="font-variation-settings:'FILL' 1;">check_circle</span> Jalur Pandangan Lanjutan</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-600 text-[16px]" style="font-variation-settings:'FILL' 1;">check_circle</span> Laporan Analitik Lengkap</li>
+                    <li class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[16px]">cancel</span> Kolaborasi Multi-pengguna</li>
+                </ul>
+            </label>
+
+            <!-- Institusi -->
+            <label class="plan-card rounded-2xl p-6 shadow-lg shadow-primary/10 fade-up relative overflow-hidden {{ ($plan ?? 'individu') === 'institusi' ? 'selected' : '' }}" style="background:linear-gradient(135deg,#2e0052,#4b0082);animation-delay:.18s">
+                <input type="radio" name="plan" value="institusi" class="hidden" {{ ($plan ?? 'individu') === 'institusi' ? 'checked' : '' }} onchange="selectPlan('institusi')"/>
+                <div class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full">Paling Populer</div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-white/80" style="font-variation-settings:'FILL' 1;">business</span>
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-white/70 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/20">Analyst</span>
+                    </div>
+                    <div id="check-institusi" class="w-5 h-5 rounded-full border-2 border-white flex items-center justify-center {{ ($plan ?? 'individu') === 'institusi' ? 'bg-white' : '' }}">
+                        @if(($plan ?? 'individu') === 'institusi')
+                        <span class="material-symbols-outlined text-primary text-[12px]">check</span>
+                        @endif
+                    </div>
+                </div>
+                <h2 class="font-headline font-bold text-xl text-white mb-0.5">Institusi</h2>
+                <p class="font-headline font-black text-3xl text-white mb-1">Rp15rb <span class="text-base font-medium text-white/60">/siswa/bln</span></p>
+                <p class="text-xs text-white/60 mb-4">Untuk sekolah, universitas, dan lembaga riset</p>
+                <ul class="space-y-2 text-xs text-white/80">
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-400 text-[16px]" style="font-variation-settings:'FILL' 1;">check_circle</span> Durasi Sesi Tanpa Batas</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-400 text-[16px]" style="font-variation-settings:'FILL' 1;">check_circle</span> Jalur Pandangan Lanjutan</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-400 text-[16px]" style="font-variation-settings:'FILL' 1;">check_circle</span> Laporan Analitik Lengkap</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-400 text-[16px]" style="font-variation-settings:'FILL' 1;">check_circle</span> Kolaborasi Multi-pengguna</li>
+                </ul>
+            </label>
+        </div>
+
+        <!-- Payment Form -->
+        <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/15 shadow-sm p-7 fade-up" style="animation-delay:.25s">
+            <h3 class="font-headline font-bold text-lg text-primary mb-5 flex items-center gap-2">
+                <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1;">payment</span>
+                Detail Pembayaran
+            </h3>
+
+            @if($errors->any())
+            <div class="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-error font-medium">
+                {{ $errors->first() }}
+            </div>
+            @endif
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                <div class="flex flex-col gap-1.5">
+                    <label class="text-xs font-bold text-on-surface-variant tracking-wide">Nama Lengkap / Institusi <span class="text-error">*</span></label>
+                    <input name="name" type="text" value="{{ old('name') }}" placeholder="Masukkan nama atau nama institusi"
+                        class="w-full bg-surface-container-low p-3 rounded-lg border border-outline-variant/20 focus:ring-2 focus:ring-primary/20 text-sm outline-none"
+                        required/>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                    <label class="text-xs font-bold text-on-surface-variant tracking-wide">Email Aktif <span class="text-error">*</span></label>
+                    <input name="email" type="email" value="{{ old('email') }}" placeholder="email@domain.com"
+                        class="w-full bg-surface-container-low p-3 rounded-lg border border-outline-variant/20 focus:ring-2 focus:ring-primary/20 text-sm outline-none"
+                        required/>
+                </div>
+            </div>
+
+            <!-- Payment method placeholder -->
+            <div class="mb-5">
+                <label class="text-xs font-bold text-on-surface-variant tracking-wide mb-2 block">Metode Pembayaran</label>
+                <div class="grid grid-cols-3 gap-3">
+                    <label class="flex flex-col items-center p-3 rounded-xl border-2 border-primary bg-primary/5 cursor-pointer">
+                        <input type="radio" name="method" value="transfer" class="hidden" checked/>
+                        <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1;">account_balance</span>
+                        <span class="text-[10px] font-bold text-primary mt-1">Transfer Bank</span>
+                    </label>
+                    <label class="flex flex-col items-center p-3 rounded-xl border border-outline-variant/20 cursor-pointer hover:border-primary/30 transition-colors">
+                        <input type="radio" name="method" value="qris" class="hidden"/>
+                        <span class="material-symbols-outlined text-on-surface-variant text-2xl">qr_code_2</span>
+                        <span class="text-[10px] font-bold text-on-surface-variant mt-1">QRIS</span>
+                    </label>
+                    <label class="flex flex-col items-center p-3 rounded-xl border border-outline-variant/20 cursor-pointer hover:border-primary/30 transition-colors">
+                        <input type="radio" name="method" value="ewallet" class="hidden"/>
+                        <span class="material-symbols-outlined text-on-surface-variant text-2xl">wallet</span>
+                        <span class="text-[10px] font-bold text-on-surface-variant mt-1">E-Wallet</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div id="order-summary" class="p-4 bg-surface-container-low rounded-xl mb-5 text-sm">
+                <p class="text-xs font-bold text-outline uppercase tracking-wider mb-3">Ringkasan Pesanan</p>
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-on-surface-variant">Paket</span>
+                    <span class="font-bold text-on-surface" id="summary-plan">Individu — Explorer</span>
+                </div>
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-on-surface-variant">Harga</span>
+                    <span class="font-bold text-on-surface" id="summary-price">Rp 25.000/bulan</span>
+                </div>
+                <div class="border-t border-outline-variant/20 mt-3 pt-3 flex justify-between items-center">
+                    <span class="font-bold text-on-surface">Total (1 bulan)</span>
+                    <span class="font-headline font-black text-primary text-lg" id="summary-total">Rp 25.000</span>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-base">
+                <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">lock</span>
+                Bayar Sekarang & Dapatkan API Key
+            </button>
+            <p class="text-center text-xs text-on-surface-variant mt-3">
+                <span class="material-symbols-outlined text-[12px] align-middle mr-0.5" style="font-variation-settings:'FILL' 1;">verified_user</span>
+                Pembayaran aman & terenkripsi. Setelah berhasil, Anda akan menerima API Key untuk aktivasi akun.
+            </p>
+        </div>
+    </form>
+
+    <p class="text-center text-xs text-on-surface-variant mt-6">
+        Sudah punya akun? <a href="{{ route('login') }}" class="font-bold text-primary hover:underline">Masuk di sini</a>
+    </p>
+</div>
+
+<script>
+const plans = {
+    individu:  { label:'Individu — Explorer',   price:'Rp 25.000/bulan', total:'Rp 25.000' },
+    institusi: { label:'Institusi — Analyst',   price:'Rp 15.000/siswa/bulan', total:'Rp 15.000 x jumlah siswa' },
+};
+
+function selectPlan(plan) {
+    document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+    event.currentTarget.closest('.plan-card').classList.add('selected');
+
+    // Update checkmarks (quick DOM update)
+    ['individu','institusi'].forEach(p => {
+        const el = document.getElementById(`check-${p}`);
+        if (!el) return;
+        if (p === plan) {
+            el.classList.add(p === 'individu' ? 'bg-primary' : 'bg-white');
+            el.innerHTML = `<span class="material-symbols-outlined ${p==='individu'?'text-white':'text-primary'} text-[12px]">check</span>`;
+        } else {
+            el.classList.remove('bg-primary','bg-white');
+            el.innerHTML = '';
+        }
+    });
+
+    document.getElementById('summary-plan').innerText  = plans[plan].label;
+    document.getElementById('summary-price').innerText = plans[plan].price;
+    document.getElementById('summary-total').innerText = plans[plan].total;
+
+    // Set radio
+    document.querySelector(`input[name="plan"][value="${plan}"]`).checked = true;
+}
+
+// Init on load
+selectPlan('{{ $plan ?? "individu" }}');
+</script>
 </body></html>
-
